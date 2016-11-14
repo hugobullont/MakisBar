@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-nov-2016 9:38:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Restaurants" table="restaurants" catalog="makisbar" optimistic-lock="version">
+        <id name="idRestaurant" type="java.lang.Integer">
+            <column name="idRestaurant" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="imgSource" type="string">
+            <column name="imgSource" length="500" not-null="true" />
+        </property>
+        <set name="relRestDrks" table="rel_rest_drk" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRestaurant" not-null="true" />
+            </key>
+            <one-to-many class="Entities.RelRestDrk" />
+        </set>
+        <set name="tableses" table="tables" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRestaurant" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Tables" />
+        </set>
+        <set name="waiters" table="waiter" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRestaurant" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Waiter" />
+        </set>
+        <set name="relRestMaks" table="rel_rest_mak" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRestaurant" not-null="true" />
+            </key>
+            <one-to-many class="Entities.RelRestMak" />
+        </set>
+        <set name="relRestCmps" table="rel_rest_cmp" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRestaurant" not-null="true" />
+            </key>
+            <one-to-many class="Entities.RelRestCmp" />
+        </set>
+    </class>
+</hibernate-mapping>

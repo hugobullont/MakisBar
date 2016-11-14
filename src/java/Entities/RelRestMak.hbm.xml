@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-nov-2016 9:38:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.RelRestMak" table="rel_rest_mak" catalog="makisbar" optimistic-lock="version">
+        <id name="idRelRestMak" type="java.lang.Integer">
+            <column name="idRel_Rest_Mak" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="makis" class="Entities.Makis" fetch="select">
+            <column name="idMaki" not-null="true" />
+        </many-to-one>
+        <many-to-one name="restaurants" class="Entities.Restaurants" fetch="select">
+            <column name="idRestaurant" not-null="true" />
+        </many-to-one>
+        <property name="stock" type="java.lang.Integer">
+            <column name="Stock" />
+        </property>
+    </class>
+</hibernate-mapping>

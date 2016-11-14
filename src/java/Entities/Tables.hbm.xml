@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-nov-2016 9:38:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Tables" table="tables" catalog="makisbar" optimistic-lock="version">
+        <id name="idTable" type="java.lang.Integer">
+            <column name="idTable" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="restaurants" class="Entities.Restaurants" fetch="select">
+            <column name="idRestaurant" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typetables" class="Entities.Typetables" fetch="select">
+            <column name="idTypeTable" not-null="true" />
+        </many-to-one>
+        <many-to-one name="waiter" class="Entities.Waiter" fetch="select">
+            <column name="idWaiter" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="attended" type="boolean">
+            <column name="attended" not-null="true" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTable" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Orders" />
+        </set>
+    </class>
+</hibernate-mapping>
