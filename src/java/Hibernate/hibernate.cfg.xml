@@ -7,6 +7,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/makisbar</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="Entities/Tables.hbm.xml"/>
     <mapping resource="Entities/Orders.hbm.xml"/>
     <mapping resource="Entities/Productsbyorder.hbm.xml"/>
