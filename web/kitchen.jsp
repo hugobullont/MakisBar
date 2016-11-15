@@ -4,6 +4,10 @@
     Author     : Hugo
 --%>
 
+<%@page import="Entities.OrderProduct"%>
+<%@page import="Entities.Orders"%>
+<%@page import="DataAccess.Orders.OrderRepository"%>
+<%@page import="DataAccess.Orders.IOrderRepository"%>
 <%@page import="Entities.Waiter"%>
 <%@page import="Entities.Tables"%>
 <%@page import="DataAccess.Tables.TableRepository"%>
@@ -47,12 +51,18 @@
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
              ITableRepository restTables = new TableRepository();
              IWaiterRepository waiterRepo = new WaiterRepository();
+             IOrderRepository orderRepo = new OrderRepository();
              Tables user = new Tables(); 
              Waiter waiter = new Waiter(); 
+             List<OrderProduct> AllMakis = orderRepo.GetMakisOfOrders();
              List <Tables> theList = restTables.GetUsersTablesByRestaurant(cUser.getRestaurants().getIdRestaurant()) ; 
              for (int i = 0; i<theList.size();i++) { 
-             user = (Tables) theList.get(i); 
-             waiter = (Waiter) user.getWaiter(); %>
+                user = (Tables) theList.get(i); 
+                Orders order = orderRepo.GetNoSendedOrderByTable(user.getIdTable());
+                List<OrderProduct> makis = null;
+                
+             
+                waiter = (Waiter) user.getWaiter(); %>
             <div class="col s12 m6">
               <div class="card white">
                 <div class="card-content brown-text">
