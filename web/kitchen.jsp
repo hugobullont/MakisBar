@@ -61,13 +61,24 @@
                 Orders order = orderRepo.GetNoSendedOrderByTable(user.getIdTable());
                 List<OrderProduct> makis = null;
                 
-             
+                for(OrderProduct beta:AllMakis)
+                {
+                    if(beta.getOrderId()==order.getIdOrder())
+                    {
+                        makis.add(beta);
+                    }
+                }
                 waiter = (Waiter) user.getWaiter(); %>
             <div class="col s12 m6">
               <div class="card white">
                 <div class="card-content brown-text">
                     <span class="card-title"><% out.println(user.getUsername());%></span>
-                  <p>INFO DEL PEDIDO DE LA MESA</p>
+                  <p>MAKIS</p>
+                  <% for(OrderProduct temp:makis)
+                  {%>
+                  <p><%=temp.getName()%></p>
+                  <%}%>
+                  
                 </div>
                 <div class="card-action">
                     <a href="#">Confirmar Envío</a> <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
