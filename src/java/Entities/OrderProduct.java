@@ -13,15 +13,16 @@ public class OrderProduct {
     private String name;
     private String typeName;
     private int quantity;
-    private int orderId;
+    private Orders order;
     
     
-    public OrderProduct(String name, String typeName, int quantity, int orderId)
+    public OrderProduct(String name, String typeName, int quantity, Orders order)
     {
         this.name = name;
         this.typeName = typeName;
         this.quantity = quantity;
-        this.orderId = orderId;
+        this.order = order;
+        
         
     }
 
@@ -68,22 +69,22 @@ public class OrderProduct {
     }
 
     /**
-     * @return the orderId
+     * @return the order
      */
-    public int getOrderId() {
-        return orderId;
+    public Orders getOrder() {
+        return order;
     }
 
     /**
-     * @param orderId the orderId to set
+     * @param order the order to set
      */
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrder(Orders order) {
+        this.order = order;
     }
 
-    /**
-     * @return the tableId
-     */
+
+    
+    
     
     
 }

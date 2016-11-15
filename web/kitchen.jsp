@@ -3,7 +3,7 @@
     Created on : 27-oct-2016, 9:51:53
     Author     : Hugo
 --%>
-
+<%@page import="java.util.ArrayList"%>
 <%@page import="Entities.OrderProduct"%>
 <%@page import="Entities.Orders"%>
 <%@page import="DataAccess.Orders.OrderRepository"%>
@@ -55,18 +55,19 @@
              Tables user = new Tables(); 
              Waiter waiter = new Waiter(); 
              List<OrderProduct> AllMakis = orderRepo.GetMakisOfOrders();
+             List<OrderProduct> makis = new ArrayList<OrderProduct>();
              List <Tables> theList = restTables.GetUsersTablesByRestaurant(cUser.getRestaurants().getIdRestaurant()) ; 
              for (int i = 0; i<theList.size();i++) { 
                 user = (Tables) theList.get(i); 
-                Orders order = orderRepo.GetNoSendedOrderByTable(user.getIdTable());
-                List<OrderProduct> makis = null;
+                Orders order = (Orders) orderRepo.GetNoSendedOrderByTable(user.getIdTable());
+                
                 
                 for(OrderProduct beta:AllMakis)
                 {
-                    if(beta.getOrderId()==order.getIdOrder())
+                    if(beta.getOrder().getIdOrder() == order.getIdOrder())
                     {
                         makis.add(beta);
-                    }
+                    } 
                 }
                 waiter = (Waiter) user.getWaiter(); %>
             <div class="col s12 m6">
@@ -85,6 +86,7 @@
                 </div>
               </div>
             </div>
+                    <% makis.clear(); %>  
             <% } %>
         
             

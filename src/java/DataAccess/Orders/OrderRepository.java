@@ -22,30 +22,28 @@ public class OrderRepository implements IOrderRepository{
     public List<OrderProduct> GetMakisOfOrders() {
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
        session.beginTransaction();
-       List<OrderProduct> orders = null;
-       String query = "select new Entities.OrderProduct(m.name, p.productType, p.quantity, p.orders.idOrder,0) from Makis as m, Productsbyorder as p where m.idMaki = p.productId and p.productType='Makis'";
-       orders = (List<OrderProduct>) session.createQuery(query).list();
+       String query = "select new Entities.OrderProduct (m.name, p.productType, p.quantity, p.orders) from Makis as m, Productsbyorder as p where m.idMaki = p.productId and p.productType='Makis'";
+       List<OrderProduct> orders = (List<OrderProduct>)session.createQuery(query).list();
        session.close();
        return orders;
     }
 
     @Override
     public void AddOrder(Orders objOrder) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void DeleteOrder(int orderId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public Orders GetNoSendedOrderByTable(int tableId) {
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
        session.beginTransaction();
-       Orders order = new Orders();
        String query="from Orders as o where o.tables.idTable = "+tableId +" and o.sended = 0";
-       order = (Orders) session.createQuery(query);
+       Orders order = (Orders) session.createQuery(query).uniqueResult();
        session.close();
        return order;
     }
