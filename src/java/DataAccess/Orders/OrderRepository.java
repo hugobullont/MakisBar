@@ -23,7 +23,7 @@ public class OrderRepository implements IOrderRepository{
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
        session.beginTransaction();
        List<OrderProduct> orders = null;
-       String query = "select new Entities.OrderProduct(m.name, p.productType, p.quantity, p.orders.idOrder)from Makis as m, Productsbyorder as p where m.idMaki = p.productId";
+       String query = "select new Entities.OrderProduct(m.name, p.productType, p.quantity, p.orders.idOrder,0) from Makis as m, Productsbyorder as p where m.idMaki = p.productId and p.productType='Makis'";
        orders = (List<OrderProduct>) session.createQuery(query).list();
        session.close();
        return orders;

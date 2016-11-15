@@ -14,15 +14,15 @@ public class OrderProduct {
     private String typeName;
     private int quantity;
     private int orderId;
-    private int tableId;
     
-    public OrderProduct(String name, String typeName, int quantity, int orderId, int tableId)
+    
+    public OrderProduct(String name, String typeName, int quantity, int orderId)
     {
         this.name = name;
         this.typeName = typeName;
         this.quantity = quantity;
         this.orderId = orderId;
-        this.tableId = tableId;
+        
     }
 
     /**
@@ -80,5 +80,10 @@ public class OrderProduct {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
+
+    /**
+     * @return the tableId
+     */
+    
     
 }
