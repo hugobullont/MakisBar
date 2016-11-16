@@ -79,22 +79,29 @@
                       <div class="card white">
                         <div class="card-content brown-text">
                             <span class="card-title"><% out.println(user.getUsername());%></span>
-                          <h5>MAKIS</h5>
+                            <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
+                            <h5>MAKIS</h5>
                           <table>
                               <tr>
                                   <th>Nombre</th>
                                   <th>Cantidad</th>
                               </tr>
                               <% for(OrderProduct temp:makis){%>
+                              
                                 <tr>
                                     <td><%=temp.getName()%></td>
                                     <td><%= temp.getQuantity()%></td>
-                                </tr><%}%>
+                                </tr>
+                                <%}%>
                           </table>
+                                <% if (!makis.isEmpty()){%>
+                                <input type="hidden" id="orderId" name="orderId" value="<%= makis.get(0).getOrder().getIdOrder() %>">
+                                <% }%>
                         </div>
                         
                         <div class="card-action">
-                            <a href="#">Confirmar Envío</a> <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
+                           <i class="center btn-large waves-effect waves-light orange lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnConfirm" class="center-align waves-button-input" value="Confirmar Envío" style=""></i>
+                           
                         </div>
                       </div>
                     </div>
