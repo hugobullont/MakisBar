@@ -70,5 +70,15 @@ public class OrderRepository implements IOrderRepository{
        return orders;
     }
 
+    @Override
+    public List<OrderProduct> GetComplementsOfOrders() {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+       session.beginTransaction();
+       String query = "select new Entities.OrderProduct (c.name, p.productType, p.quantity, p.orders) from Complements as c, Productsbyorder as p where c.idComplement = p.productId and p.productType='Complements'";
+       List<OrderProduct> orders = (List<OrderProduct>)session.createQuery(query).list();
+       session.close();
+       return orders;
+    }
+
     
 }

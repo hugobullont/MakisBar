@@ -57,8 +57,10 @@
              Waiter waiter = new Waiter(); 
              List<OrderProduct> AllMakis = orderRepo.GetMakisOfOrders();
              List<OrderProduct> AllDrinks = orderRepo.GetDrinksOfOrders();
+             List<OrderProduct> AllComplements = orderRepo.GetComplementsOfOrders();
              List<OrderProduct> makis = new ArrayList<OrderProduct>();
              List<OrderProduct> drinks = new ArrayList<OrderProduct>();
+             List<OrderProduct> complements = new ArrayList<OrderProduct>();
              List <Tables> theList = restTables.GetUsersTablesByRestaurant(cUser.getRestaurants().getIdRestaurant()) ; 
              for (int i = 0; i<theList.size();i++) { 
                 user = (Tables) theList.get(i); 
@@ -87,6 +89,18 @@
                         }
                     }
                 }
+                
+                for(OrderProduct beta:AllComplements)
+                {
+                    if(order!=null)
+                    {
+                        if(beta.getOrder().getIdOrder() == order.getIdOrder())
+                        {
+                            complements.add(beta);
+                        }
+                    }
+                }
+
                 %>
                 <form method="POST" action="ConfirmOrder">
                     <div class="col s12 m6">
@@ -123,7 +137,22 @@
                                 </tr>
                                 <%}%>
                           </table>
-                                <% if (!makis.isEmpty() || !drinks.isEmpty()){%>
+                          </br>
+                          <h5>COMPLEMENTOS</h5>
+                          <table class="bordered">
+                              <tr>
+                                  <th>Nombre</th>
+                                  <th>Cantidad</th>
+                              </tr>
+                              <% for(OrderProduct temp:complements){%>
+                              
+                                <tr>
+                                    <td><%=temp.getName()%></td>
+                                    <td><%= temp.getQuantity()%></td>
+                                </tr>
+                                <%}%>
+                          </table>
+                                <% if (!makis.isEmpty() || !drinks.isEmpty() || !complements.isEmpty()){%>
                                 <input type="hidden" id="orderId" name="orderId" value="<%=order.getIdOrder()%>">
                                 <% }%>
                         </div>
@@ -134,7 +163,7 @@
                         </div>
                       </div>
                     </div>
-                </form><% makis.clear(); drinks.clear(); } %>  
+                </form><% makis.clear(); drinks.clear(); complements.clear();} %>  
         
             
   </div>
