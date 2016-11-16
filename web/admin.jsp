@@ -48,7 +48,7 @@
         <div class="section no-pad-bot" id="index-banner">
         	<div class="row">
 				<div class="col s12 m6">
-					<div class="card medium">
+					<div class="card medium hoverable">
 						<div class="card-image waves-effect waves-block waves-light">
 						  <img class="activator" src="resources/ingresando.jpg">
 						</div>
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<div class="col s12 m6">
-						<div class="card medium">
+						<div class="card medium hoverable">
 							<div class="card-image waves-effect waves-block waves-light">
 							  <img class="activator" src="resources/retirandose.jpg">
 							</div>
@@ -126,7 +126,7 @@
 						</div>
 				</div>
 				<div class="col s12 m6">
-							<div class="card medium">
+							<div class="card medium hoverable">
 								<div class="card-image waves-effect waves-block waves-light">
 								  <img class="activator" src="resources/mesero.jpg">
 								</div>
@@ -163,7 +163,7 @@
 							</div>
 				</div>
       			<div class="col s12 m6">
-							<div class="card medium">
+							<div class="card medium hoverable">
 								<div class="card-image waves-effect waves-block waves-light">
 								  <img class="activator" src="resources/adiosmesero.jpg">
 								</div>
@@ -193,7 +193,7 @@
        		</div>
         </div>
         
-        <footer class="page-footer orange lighten-1">
+        <footer class="page-footer orange lighten-1 hoverable">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">

@@ -104,7 +104,7 @@
                 %>
                 <form method="POST" action="ConfirmOrder">
                     <div class="col s12 m6">
-                      <div class="card white">
+                      <div class="card white hoverable">
                         <div class="card-content brown-text">
                             <span class="card-title"><% out.println(user.getUsername());%></span>
                             <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
@@ -169,7 +169,7 @@
   </div>
             
         
-        <footer class="page-footer orange lighten-1">
+        <footer class="page-footer orange lighten-1 hoverable">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
