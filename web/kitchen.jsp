@@ -44,7 +44,8 @@
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
-        
+        <% response.setIntHeader("Refresh", 5);%>
+
     <div class="row">
             <!--- CÓDIGO JAVA PARA MOSTRAR SOLO LAS MESAS QUE SE TIENEN --->
             <% HttpSession httpsession = request.getSession(false); 
