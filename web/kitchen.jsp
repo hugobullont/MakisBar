@@ -60,7 +60,7 @@
              for (int i = 0; i<theList.size();i++) { 
                 user = (Tables) theList.get(i); 
                 Orders order = (Orders) orderRepo.GetNoSendedOrderByTable(user.getIdTable());
-                
+                waiter = (Waiter) user.getWaiter(); 
                 
                 for(OrderProduct beta:AllMakis)
                 {
@@ -69,7 +69,7 @@
                         makis.add(beta);
                     } 
                 }
-                waiter = (Waiter) user.getWaiter(); %>
+                %>
             <div class="col s12 m6">
               <div class="card white">
                 <div class="card-content brown-text">
