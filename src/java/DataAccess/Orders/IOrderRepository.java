@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface IOrderRepository {
     public List<OrderProduct> GetMakisOfOrders();
+    public List<OrderProduct> GetDrinksOfOrders();
     public void AddOrder(Orders objOrder);
     public void DeleteOrder(int orderId);
     public Orders GetNoSendedOrderByTable(int tableId);

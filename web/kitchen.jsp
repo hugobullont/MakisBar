@@ -56,7 +56,9 @@
              Tables user = new Tables(); 
              Waiter waiter = new Waiter(); 
              List<OrderProduct> AllMakis = orderRepo.GetMakisOfOrders();
+             List<OrderProduct> AllDrinks = orderRepo.GetDrinksOfOrders();
              List<OrderProduct> makis = new ArrayList<OrderProduct>();
+             List<OrderProduct> drinks = new ArrayList<OrderProduct>();
              List <Tables> theList = restTables.GetUsersTablesByRestaurant(cUser.getRestaurants().getIdRestaurant()) ; 
              for (int i = 0; i<theList.size();i++) { 
                 user = (Tables) theList.get(i); 
@@ -74,6 +76,17 @@
                     }
                     
                 }
+                
+                for(OrderProduct beta:AllDrinks)
+                {
+                    if(order!=null)
+                    {
+                        if(beta.getOrder().getIdOrder() == order.getIdOrder())
+                        {
+                            drinks.add(beta);
+                        }
+                    }
+                }
                 %>
                 <form method="POST" action="ConfirmOrder">
                     <div class="col s12 m6">
@@ -82,7 +95,7 @@
                             <span class="card-title"><% out.println(user.getUsername());%></span>
                             <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
                             <h5>MAKIS</h5>
-                          <table>
+                            <table class="bordered">
                               <tr>
                                   <th>Nombre</th>
                                   <th>Cantidad</th>
@@ -91,12 +104,27 @@
                               
                                 <tr>
                                     <td><%=temp.getName()%></td>
+                                    <td ><%= temp.getQuantity()%></td>
+                                </tr>
+                                <%}%>
+                          </table>
+                          </br>
+                          <h5>BEBIDAS</h5>
+                          <table class="bordered">
+                              <tr>
+                                  <th>Nombre</th>
+                                  <th>Cantidad</th>
+                              </tr>
+                              <% for(OrderProduct temp:drinks){%>
+                              
+                                <tr>
+                                    <td><%=temp.getName()%></td>
                                     <td><%= temp.getQuantity()%></td>
                                 </tr>
                                 <%}%>
                           </table>
-                                <% if (!makis.isEmpty()){%>
-                                <input type="hidden" id="orderId" name="orderId" value="<%= makis.get(0).getOrder().getIdOrder() %>">
+                                <% if (!makis.isEmpty() || !drinks.isEmpty()){%>
+                                <input type="hidden" id="orderId" name="orderId" value="<%=order.getIdOrder()%>">
                                 <% }%>
                         </div>
                         
@@ -106,7 +134,7 @@
                         </div>
                       </div>
                     </div>
-                </form><% makis.clear(); } %>  
+                </form><% makis.clear(); drinks.clear(); } %>  
         
             
   </div>

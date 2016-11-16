@@ -60,5 +60,15 @@ public class OrderRepository implements IOrderRepository{
         session.close();
     }
 
+    @Override
+    public List<OrderProduct> GetDrinksOfOrders() {
+       Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+       session.beginTransaction();
+       String query = "select new Entities.OrderProduct (d.name, p.productType, p.quantity, p.orders) from Drinks as d, Productsbyorder as p where d.idDrink = p.productId and p.productType='Drinks'";
+       List<OrderProduct> orders = (List<OrderProduct>)session.createQuery(query).list();
+       session.close();
+       return orders;
+    }
+
     
 }
