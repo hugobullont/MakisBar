@@ -64,21 +64,34 @@
                 
                 for(OrderProduct beta:AllMakis)
                 {
-                    if(beta.getOrder().getIdOrder() == order.getIdOrder())
+                    if(order!= null)
                     {
-                        makis.add(beta);
-                    } 
+                        if(beta.getOrder().getIdOrder() == order.getIdOrder())
+                        {
+                            makis.add(beta);
+                        } 
+                    }
+                    
                 }
                 %>
             <div class="col s12 m6">
               <div class="card white">
                 <div class="card-content brown-text">
                     <span class="card-title"><% out.println(user.getUsername());%></span>
-                  <p>MAKIS</p>
-                  <% for(OrderProduct temp:makis)
-                  {%>
-                  <p><%=temp.getName()%></p>
-                  <%}%>
+                  <h5>MAKIS</h5>
+                  <table>
+                      <tr>
+                          <th>Nombre</th>
+                          <th>Cantidad</th>
+                      </tr>
+                      <% for(OrderProduct temp:makis){%>
+                        <tr>
+                            <td><%=temp.getName()%></td>
+                            <td><%= temp.getQuantity()%></td>
+                        </tr><%}%>
+                  </table>
+                  
+                  
                   
                 </div>
                 <div class="card-action">
