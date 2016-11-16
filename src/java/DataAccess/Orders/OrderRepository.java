@@ -36,6 +36,7 @@ public class OrderRepository implements IOrderRepository{
     @Override
     public void DeleteOrder(int orderId) {
         throw new UnsupportedOperationException("Not supported yet."); 
+        
     }
 
     @Override
@@ -46,6 +47,17 @@ public class OrderRepository implements IOrderRepository{
        Orders order = (Orders) session.createQuery(query).uniqueResult();
        session.close();
        return order;
+    }
+
+    @Override
+    public void SetSendedToOrder(int orderId) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Orders order = (Orders) session.get(Orders.class, orderId);
+        order.setSended(Byte.valueOf("1"));
+        session.update(order);
+        session.getTransaction().commit();
+        session.close();
     }
 
     

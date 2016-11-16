@@ -18,5 +18,6 @@ public interface IOrderRepository {
     public void AddOrder(Orders objOrder);
     public void DeleteOrder(int orderId);
     public Orders GetNoSendedOrderByTable(int tableId);
+    public void SetSendedToOrder(int orderId);
     
 }

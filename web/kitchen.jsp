@@ -74,33 +74,31 @@
                     
                 }
                 %>
-            <div class="col s12 m6">
-              <div class="card white">
-                <div class="card-content brown-text">
-                    <span class="card-title"><% out.println(user.getUsername());%></span>
-                  <h5>MAKIS</h5>
-                  <table>
-                      <tr>
-                          <th>Nombre</th>
-                          <th>Cantidad</th>
-                      </tr>
-                      <% for(OrderProduct temp:makis){%>
-                        <tr>
-                            <td><%=temp.getName()%></td>
-                            <td><%= temp.getQuantity()%></td>
-                        </tr><%}%>
-                  </table>
-                  
-                  
-                  
-                </div>
-                <div class="card-action">
-                    <a href="#">Confirmar Envío</a> <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
-                </div>
-              </div>
-            </div>
-                    <% makis.clear(); %>  
-            <% } %>
+                <form method="POST" action="ConfirmOrder">
+                    <div class="col s12 m6">
+                      <div class="card white">
+                        <div class="card-content brown-text">
+                            <span class="card-title"><% out.println(user.getUsername());%></span>
+                          <h5>MAKIS</h5>
+                          <table>
+                              <tr>
+                                  <th>Nombre</th>
+                                  <th>Cantidad</th>
+                              </tr>
+                              <% for(OrderProduct temp:makis){%>
+                                <tr>
+                                    <td><%=temp.getName()%></td>
+                                    <td><%= temp.getQuantity()%></td>
+                                </tr><%}%>
+                          </table>
+                        </div>
+                        
+                        <div class="card-action">
+                            <a href="#">Confirmar Envío</a> <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
+                        </div>
+                      </div>
+                    </div>
+                </form><% makis.clear(); } %>  
         
             
   </div>
