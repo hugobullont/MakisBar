@@ -6,6 +6,7 @@
 package DataAccess.Products;
 
 import Entities.Makis;
+import Entities.*;
 import Entities.RelRestMak;
 import Entities.Restaurants;
 import Hibernate.MakisBarHibernateUtil;
@@ -26,6 +27,26 @@ public class ProductsRepository implements IProductsRepository{
         makis = (List<RelRestMak>) session.createQuery("FROM RelRestMak as rel where rel.restaurants.idRestaurant ="+ idRest).list();
         session.close();
         return makis;
+    }
+
+    @Override
+    public List<RelRestDrk> GetDrinksByRestaurant(int idRest) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<RelRestDrk> drinks = null;
+        drinks = (List<RelRestDrk>) session.createQuery("FROM RelRestDrk as rel where rel.restaurants.idRestaurant ="+ idRest).list();
+        session.close();
+        return drinks;
+    }
+
+    @Override
+    public List<RelRestCmp> GetComplByRestaurant(int idRest) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<RelRestCmp> complements = null;
+        complements = (List<RelRestCmp>) session.createQuery("FROM RelRestCmp as rel where rel.restaurants.idRestaurant ="+ idRest).list();
+        session.close();
+        return complements;
     }
     
 }

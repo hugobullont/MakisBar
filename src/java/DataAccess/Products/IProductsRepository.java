@@ -6,6 +6,8 @@
 package DataAccess.Products;
 
 import Entities.Makis;
+import Entities.RelRestCmp;
+import Entities.RelRestDrk;
 import Entities.RelRestMak;
 import java.util.List;
 
@@ -15,4 +17,6 @@ import java.util.List;
  */
 public interface IProductsRepository {
     List<RelRestMak> GetMakisByRestaurant(int idRest);
+    List<RelRestDrk> GetDrinksByRestaurant(int idRest);
+    List<RelRestCmp> GetComplByRestaurant(int idRest);
 }
