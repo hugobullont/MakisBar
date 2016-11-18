@@ -34,8 +34,10 @@ public class TableRepository implements ITableRepository{
         for (int i=0;i<tableIds.size();i++)
         {
             Tables table = new Tables();
-            table.setIdTable(tableIds.get(i));
-            session.delete(table);
+            table = (Tables) session.get(Tables.class,tableIds.get(i));
+            //En caso de Inconsistencia, utilizar el Attended
+            table.setAttended(true);
+            session.update(table);
         }
         
         session.getTransaction().commit();
@@ -60,7 +62,7 @@ public class TableRepository implements ITableRepository{
        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
        session.beginTransaction();
        List<Tables> tables = null;
-       tables = (List<Tables>) session.createQuery("FROM Tables t WHERE t.typetables.idTypeTable = 1 and t.restaurants.idRestaurant =" + String.valueOf(restId)).list();
+       tables = (List<Tables>) session.createQuery("FROM Tables t WHERE t.typetables.idTypeTable = 1 and t.attended = false and t.restaurants.idRestaurant =" + String.valueOf(restId)).list();
        session.close();
        return tables; 
     }
