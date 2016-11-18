@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataAccess.Makis;
+package DataAccess.Products;
 
 import Entities.Makis;
 import Entities.RelRestMak;
@@ -16,7 +16,7 @@ import org.hibernate.Session;
  *
  * @author Usuario
  */
-public class MakisRepository implements IMakisRepository{
+public class ProductsRepository implements IProductsRepository{
 
     @Override
     public List<RelRestMak> GetMakisByRestaurant(int idRest) {

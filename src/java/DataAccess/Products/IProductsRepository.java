@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataAccess.Makis;
+package DataAccess.Products;
 
 import Entities.Makis;
 import Entities.RelRestMak;
@@ -13,6 +13,6 @@ import java.util.List;
  *
  * @author Usuario
  */
-public interface IMakisRepository {
+public interface IProductsRepository {
     List<RelRestMak> GetMakisByRestaurant(int idRest);
 }

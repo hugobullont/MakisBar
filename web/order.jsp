@@ -6,8 +6,7 @@
 
 <%@page import="Entities.RelRestMak"%>
 <%@page import="java.util.List"%>
-<%@page import="DataAccess.Makis.MakisRepository"%>
-<%@page import="DataAccess.Makis.IMakisRepository"%>
+<%@page import="DataAccess.Products.*"%>
 <%@page import="Entities.Tables"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,8 +23,8 @@
     </head>
     <% HttpSession httpsession = request.getSession(false); 
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
-            IMakisRepository makisRepo = new MakisRepository();
-            List<RelRestMak> listMakis = makisRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant()); %>
+            IProductsRepository ProductsRepo = new ProductsRepository();
+            List<RelRestMak> listMakis = ProductsRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant()); %>
     <body>
         <nav class="orange lighten-2" role="navigation">
             <div class="nav-wrapper container">
@@ -37,10 +36,10 @@
                     <li>Tu Mesero es: <%= cUser.getWaiter().getName()%>&nbsp&nbsp</li>
                 </ul>
                 <ul class="left hide-on-med-and-down">
-                    <li><img src=<%= cUser.getWaiter().getSrcImg()%> class="circle responsive-img" style="width: 50px; margin-top: 5px;"></li>
+                    <li><img src="<%= cUser.getWaiter().getSrcImg()%>" class="circle responsive-img" style="width: 50px; margin-top: 5px;"></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
-                    <li class="center"><a href="#"><img src=<%= cUser.getWaiter().getSrcImg()%> class="circle responsive-img" style="width: 50px; margin-top: 5px;"></a></li>
+                    <li class="center"><a href="#"><img src="<%= cUser.getWaiter().getSrcImg()%>" class="circle responsive-img" style="width: 50px; margin-top: 5px;"></a></li>
                     <li class="center"><a href="#">Tu Mesero es: <%= cUser.getWaiter().getName()%></a></li>
                     <li><a href="Logout">Log Out</a></li>
                 </ul>
