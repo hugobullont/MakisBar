@@ -8,6 +8,7 @@ package DataAccess.Orders;
 import Entities.OrderProduct;
 import Entities.Orders;
 import Entities.Tables;
+import Entities.Productsbyorder;
 import Hibernate.MakisBarHibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
@@ -29,7 +30,7 @@ public class OrderRepository implements IOrderRepository{
     }
 
     @Override
-    public void AddOrder(Orders objOrder) {
+    public void AddOrder(Orders objOrder, List<Productsbyorder> listProducts) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
