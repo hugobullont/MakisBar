@@ -21,7 +21,7 @@ public class OrderRepository implements IOrderRepository{
 
     @Override
     public List<OrderProduct> GetMakisOfOrders() {
-        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+       Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
        session.beginTransaction();
        String query = "select new Entities.OrderProduct (m.name, p.productType, p.quantity, p.orders) from Makis as m, Productsbyorder as p where m.idMaki = p.productId and p.productType='Makis'";
        List<OrderProduct> orders = (List<OrderProduct>)session.createQuery(query).list();
@@ -31,7 +31,15 @@ public class OrderRepository implements IOrderRepository{
 
     @Override
     public void AddOrder(Orders objOrder, List<Productsbyorder> listProducts) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(objOrder);
+        for(Productsbyorder product : listProducts)
+        {
+            session.save(product);
+        }
+        session.getTransaction().commit();
+        session.close(); 
     }
 
     @Override
