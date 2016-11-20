@@ -1,5 +1,5 @@
 package Entities;
-// Generated 12-nov-2016 9:38:35 by Hibernate Tools 4.3.1
+// Generated 20-nov-2016 13:40:39 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,21 +15,24 @@ public class Waiter  implements java.io.Serializable {
      private Restaurants restaurants;
      private String name;
      private String srcImg;
+     private byte active;
      private Set tableses = new HashSet(0);
 
     public Waiter() {
     }
 
 	
-    public Waiter(Restaurants restaurants, String name, String srcImg) {
+    public Waiter(Restaurants restaurants, String name, String srcImg, byte active) {
         this.restaurants = restaurants;
         this.name = name;
         this.srcImg = srcImg;
+        this.active = active;
     }
-    public Waiter(Restaurants restaurants, String name, String srcImg, Set tableses) {
+    public Waiter(Restaurants restaurants, String name, String srcImg, byte active, Set tableses) {
        this.restaurants = restaurants;
        this.name = name;
        this.srcImg = srcImg;
+       this.active = active;
        this.tableses = tableses;
     }
    
@@ -60,6 +63,13 @@ public class Waiter  implements java.io.Serializable {
     
     public void setSrcImg(String srcImg) {
         this.srcImg = srcImg;
+    }
+    public byte getActive() {
+        return this.active;
+    }
+    
+    public void setActive(byte active) {
+        this.active = active;
     }
     public Set getTableses() {
         return this.tableses;

@@ -1,5 +1,5 @@
 package Entities;
-// Generated 12-nov-2016 9:38:35 by Hibernate Tools 4.3.1
+// Generated 20-nov-2016 13:40:39 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package Entities;
 public class RelRestDrk  implements java.io.Serializable {
 
 
-     private int idRelRestDrk;
+     private Integer idRelRestDrk;
      private Drinks drinks;
      private Restaurants restaurants;
      private Integer stock;
@@ -18,23 +18,21 @@ public class RelRestDrk  implements java.io.Serializable {
     }
 
 	
-    public RelRestDrk(int idRelRestDrk, Drinks drinks, Restaurants restaurants) {
-        this.idRelRestDrk = idRelRestDrk;
+    public RelRestDrk(Drinks drinks, Restaurants restaurants) {
         this.drinks = drinks;
         this.restaurants = restaurants;
     }
-    public RelRestDrk(int idRelRestDrk, Drinks drinks, Restaurants restaurants, Integer stock) {
-       this.idRelRestDrk = idRelRestDrk;
+    public RelRestDrk(Drinks drinks, Restaurants restaurants, Integer stock) {
        this.drinks = drinks;
        this.restaurants = restaurants;
        this.stock = stock;
     }
    
-    public int getIdRelRestDrk() {
+    public Integer getIdRelRestDrk() {
         return this.idRelRestDrk;
     }
     
-    public void setIdRelRestDrk(int idRelRestDrk) {
+    public void setIdRelRestDrk(Integer idRelRestDrk) {
         this.idRelRestDrk = idRelRestDrk;
     }
     public Drinks getDrinks() {

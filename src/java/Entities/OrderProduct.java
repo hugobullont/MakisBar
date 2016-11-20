@@ -81,10 +81,4 @@ public class OrderProduct {
     public void setOrder(Orders order) {
         this.order = order;
     }
-
-
-    
-    
-    
-    
 }

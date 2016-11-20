@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 12-nov-2016 9:38:37 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20-nov-2016 13:40:41 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.RelRestDrk" table="rel_rest_drk" catalog="makisbar" optimistic-lock="version">
-        <id name="idRelRestDrk" type="int">
+        <id name="idRelRestDrk" type="java.lang.Integer">
             <column name="idRel_Rest_Drk" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="drinks" class="Entities.Drinks" fetch="select">
             <column name="idDrink" not-null="true" />

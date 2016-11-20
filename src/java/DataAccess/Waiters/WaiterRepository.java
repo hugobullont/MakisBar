@@ -43,9 +43,9 @@ public class WaiterRepository implements IWaiterRepository {
         session.beginTransaction();
         for (int i=0;i<waiterIds.size();i++)
         {
-            Waiter waiter = new Waiter();
-            waiter.setIdWaiter(waiterIds.get(i));
-            session.delete(waiter);
+            Waiter waiter = (Waiter) session.get(Waiter.class, waiterIds.get(i));
+            waiter.setActive(Byte.valueOf("0"));
+            session.update(waiter);
         }
         session.getTransaction().commit();
         session.close();
@@ -56,7 +56,7 @@ public class WaiterRepository implements IWaiterRepository {
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Waiter> waiters = null;
-        waiters = session.createQuery("FROM Waiter w WHERE w.restaurants.idRestaurant =" + String.valueOf(restId)).list();
+        waiters = session.createQuery("FROM Waiter w WHERE w.active = 1 and w.restaurants.idRestaurant =" + String.valueOf(restId)).list();
         session.close();
         return waiters;
     }

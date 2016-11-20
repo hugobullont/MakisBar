@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="makisbar"/>
-  <table-filter match-name="waiter"/>
   <table-filter match-name="productsbyorder"/>
-  <table-filter match-name="drinks"/>
-  <table-filter match-name="orders"/>
-  <table-filter match-name="complements"/>
-  <table-filter match-name="restaurants"/>
-  <table-filter match-name="rel_rest_mak"/>
-  <table-filter match-name="makis"/>
+  <table-filter match-name="waiter"/>
   <table-filter match-name="typetables"/>
+  <table-filter match-name="drinks"/>
+  <table-filter match-name="makis"/>
   <table-filter match-name="rel_rest_drk"/>
-  <table-filter match-name="rel_rest_cmp"/>
+  <table-filter match-name="orders"/>
+  <table-filter match-name="restaurants"/>
   <table-filter match-name="tables"/>
+  <table-filter match-name="rel_rest_mak"/>
+  <table-filter match-name="rel_rest_cmp"/>
+  <table-filter match-name="complements"/>
 </hibernate-reverse-engineering>
