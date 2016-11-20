@@ -101,8 +101,8 @@ public class AddTable extends HttpServlet {
         objTable.setTypetables(type);
 
         repository.InsertTable(objTable);
-        
-        rdAdmin.forward(request, response);
+        response.sendRedirect("admin.jsp");
+        //rdAdmin.forward(request, response);
         
         
     }

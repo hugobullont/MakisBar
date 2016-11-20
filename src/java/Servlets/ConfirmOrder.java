@@ -82,7 +82,8 @@ public class ConfirmOrder extends HttpServlet {
         String orderString = request.getParameter("orderId");
         int orderId = Integer.valueOf(orderString);
         repo.SetSendedToOrder(orderId);
-        rdKitchen.forward(request, response);
+        //rdKitchen.forward(request, response);
+        response.sendRedirect("kitchen.jsp");
         
     }
 
