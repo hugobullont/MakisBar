@@ -108,6 +108,7 @@
                         <div class="card-content brown-text">
                             <span class="card-title"><% out.println(user.getUsername());%></span>
                             <font color="brown">Mesero: <% out.println(waiter.getName());  %></font>
+                            <% if(!makis.isEmpty()) {%>
                             <h5>MAKIS</h5>
                             <table class="bordered">
                               <tr>
@@ -123,6 +124,8 @@
                                 <%}%>
                           </table>
                           </br>
+                          <%}%>
+                          <% if(!drinks.isEmpty()) {%>
                           <h5>BEBIDAS</h5>
                           <table class="bordered">
                               <tr>
@@ -138,6 +141,8 @@
                                 <%}%>
                           </table>
                           </br>
+                          <%}%>
+                          <% if (!complements.isEmpty()) {%>
                           <h5>COMPLEMENTOS</h5>
                           <table class="bordered">
                               <tr>
@@ -152,15 +157,18 @@
                                 </tr>
                                 <%}%>
                           </table>
+                          <%}%>
                                 <% if (!makis.isEmpty() || !drinks.isEmpty() || !complements.isEmpty()){%>
                                 <input type="hidden" id="orderId" name="orderId" value="<%=order.getIdOrder()%>">
                                 <% }%>
                         </div>
                         
                         <div class="card-action">
-                           <i class="center btn-large waves-effect waves-light orange lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnConfirm" class="center-align waves-button-input" value="Confirmar Envío" style=""></i>
-                           
+                            <% if (!makis.isEmpty() || !drinks.isEmpty() || !complements.isEmpty()){%>
+                            <i class="center btn-large waves-effect waves-light orange lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnConfirm" class="center-align waves-button-input" value="Confirmar Envío" style=""></i>
+                            <% }%>
                         </div>
+                                
                       </div>
                     </div>
                 </form><% makis.clear(); drinks.clear(); complements.clear();} %>  
