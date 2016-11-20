@@ -66,7 +66,7 @@
 				<table>
                                     <% for(RelRestMak maki : listMakis) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="ckhmakis" value= "<%=maki.getMakis().getIdMaki()%>"id="chk<%=maki.getMakis().getName()%>"/><label for="chk<%=maki.getMakis().getName()%>"><%=maki.getMakis().getName()%></label></font></td>
+					<td><font><input type="checkbox" name="ckhmakis" value= "<%=maki.getMakis().getName() %>"id="chk<%=maki.getMakis().getName()%>"/><label for="chk<%=maki.getMakis().getName()%>"><%=maki.getMakis().getName()%></label></font></td>
 					<td><font><input name="txtNumber<%=maki.getMakis().getName()%>" id="txtNumber<%=maki.getMakis().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
