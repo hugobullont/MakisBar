@@ -4,6 +4,7 @@
     Author     : Loudy
 --%>
 
+<%@page import="DataAccess.Orders.*"%>
 <%@page import="Entities.RelRestMak"%>
 <%@page import="java.util.List"%>
 <%@page import="DataAccess.Products.*"%>
@@ -24,10 +25,13 @@
     <% HttpSession httpsession = request.getSession(false); 
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
             IProductsRepository ProductsRepo = new ProductsRepository();
+            IOrderRepository orderRepo = new OrderRepository();
             List<RelRestMak> listMakis = ProductsRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant()); 
             List<RelRestDrk> listDrinks = ProductsRepo.GetDrinksByRestaurant(cUser.getRestaurants().getIdRestaurant());
             List<RelRestCmp> listComplements = ProductsRepo.GetComplByRestaurant(cUser.getRestaurants().getIdRestaurant());
+            Orders noSendOrder = orderRepo.GetNoSendedOrderByTable(cUser.getIdTable());
     %>
+    <% response.setIntHeader("Refresh", 10);%>
     <body>
         <nav class="orange lighten-2" role="navigation">
             <div class="nav-wrapper container">
@@ -50,7 +54,7 @@
             </div>
         </nav>
         
-        <form>
+        <form method="POST" action="AddOrder">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="row">
                     <div class="col s12 m12">
@@ -126,9 +130,16 @@
                         </div>
                     </div>
             	</div>
+                 <% if(noSendOrder == null ){%>
             	<div class="row center">
                     <i class="btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="button" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
 		</div>
+                <% }%>
+                <%if(noSendOrder != null){%>
+                <div class="row center">
+                    <i class="btn-large disabled waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="button" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
+		</div>
+                <%}%>
             </div>
         </form>
         
