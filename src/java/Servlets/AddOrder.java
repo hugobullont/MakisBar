@@ -6,9 +6,12 @@
 package Servlets;
 
 import Entities.Orders;
+import Entities.Productsbyorder;
 import Entities.Tables;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,6 +82,11 @@ public class AddOrder extends HttpServlet {
         Tables cUser = (Tables) session.getAttribute("CurrentUser");
         Orders order = new Orders();
         order.setTables(cUser);
+        String[] orderMakis = request.getParameterValues("chkmakis");
+        String[] orderDrinks = request.getParameterValues("chkdrinks");
+        String[] orderComps = request.getParameterValues("chkcomp");
+        List<Productsbyorder> products = new ArrayList<Productsbyorder>();
+        
         
         
         response.sendRedirect("order.jsp");
