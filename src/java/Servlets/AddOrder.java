@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import DataAccess.Orders.IOrderRepository;
+import DataAccess.Orders.OrderRepository;
 import Entities.Orders;
 import Entities.Productsbyorder;
 import Entities.Tables;
@@ -82,12 +84,43 @@ public class AddOrder extends HttpServlet {
         Tables cUser = (Tables) session.getAttribute("CurrentUser");
         Orders order = new Orders();
         order.setTables(cUser);
+        IOrderRepository repo = new OrderRepository();
         String[] orderMakis = request.getParameterValues("chkmakis");
         String[] orderDrinks = request.getParameterValues("chkdrinks");
         String[] orderComps = request.getParameterValues("chkcomp");
         List<Productsbyorder> products = new ArrayList<Productsbyorder>();
         
+        for(String id:orderMakis)
+        {
+            Productsbyorder product = new Productsbyorder();
+            product.setProductId(Integer.valueOf(id));
+            product.setProductType("Makis");
+            String quantity = request.getParameter("txtMakisNumber"+id);
+            product.setQuantity(Integer.valueOf(quantity));
+            products.add(product);
+        }
         
+        for(String id:orderDrinks)
+        {
+            Productsbyorder product = new Productsbyorder();
+            product.setProductId(Integer.valueOf(id));
+            product.setProductType("Drinks");
+            String quantity = request.getParameter("txtDrinksNumber"+id);
+            product.setQuantity(Integer.valueOf(quantity));
+            products.add(product);
+        }
+        
+        for(String id:orderComps)
+        {
+            Productsbyorder product = new Productsbyorder();
+            product.setProductId(Integer.valueOf(id));
+            product.setProductType("Complements");
+            String quantity = request.getParameter("txtComplementsNumber"+id);
+            product.setQuantity(Integer.valueOf(quantity));
+            products.add(product);
+        }
+        
+        repo.AddOrder(order, products);
         
         response.sendRedirect("order.jsp");
     }

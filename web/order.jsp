@@ -31,7 +31,7 @@
             List<RelRestCmp> listComplements = ProductsRepo.GetComplByRestaurant(cUser.getRestaurants().getIdRestaurant());
             Orders noSendOrder = orderRepo.GetNoSendedOrderByTable(cUser.getIdTable());
     %>
-    <% response.setIntHeader("Refresh", 10);%>
+    <% response.setIntHeader("Refresh", 45);%>
     <body>
         <nav class="orange lighten-2" role="navigation">
             <div class="nav-wrapper container">
@@ -73,8 +73,8 @@
 				<table>
                                     <% for(RelRestMak maki : listMakis) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="chkmakis" value= "<%=maki.getMakis().getName() %>"id="chk<%=maki.getMakis().getName()%>"/><label for="chk<%=maki.getMakis().getName()%>"><%=maki.getMakis().getName()%></label></font></td>
-					<td><font><input name="txtNumber<%=maki.getMakis().getName()%>" id="txtNumber<%=maki.getMakis().getName()%>" type="number" class="center col s3 m6"></font></td>
+					<td><font><input type="checkbox" name="chkmakis" value= "<%=maki.getMakis().getIdMaki() %>"id="chkMakis<%=maki.getMakis().getIdMaki() %>"/><label for="chkMakis<%=maki.getMakis().getIdMaki() %>"><%=maki.getMakis().getName()%></label></font></td>
+					<td><font><input name="txtMakisNumber<%=maki.getMakis().getIdMaki() %>" id="txtMakisNumber<%=maki.getMakis().getIdMaki() %>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
 				</table>
@@ -98,8 +98,8 @@
                                 <table>
                                     <% for(RelRestDrk drink : listDrinks) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="chkdrinks" value= "<%=drink.getDrinks().getName()%>"id="chk<%=drink.getDrinks().getName()%>"/><label for="chk<%=drink.getDrinks().getName()%>"><%=drink.getDrinks().getName()%></label></font></td>
-					<td><font><input name="txtNumber<%=drink.getDrinks().getName()%>" id="txtNumber<%=drink.getDrinks().getName()%>" type="number" class="center col s3 m6"></font></td>
+					<td><font><input type="checkbox" name="chkdrinks" value= "<%=drink.getDrinks().getIdDrink()%>"id="chkDrinks<%=drink.getDrinks().getIdDrink()%>"/><label for="chkDrinks<%=drink.getDrinks().getIdDrink()%>"><%=drink.getDrinks().getName()%></label></font></td>
+					<td><font><input name="txtDrinksNumber<%=drink.getDrinks().getIdDrink()%>" id="txtDrinksNumber<%=drink.getDrinks().getIdDrink()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
 				</table>
@@ -121,8 +121,8 @@
                                 <table>
                                     <% for(RelRestCmp comp : listComplements) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="chkcomp" value= "<%=comp.getComplements().getName()%>"id="chk<%=comp.getComplements().getName()%>"/><label for="chk<%=comp.getComplements().getName()%>"><%=comp.getComplements().getName()%></label></font></td>
-					<td><font><input name="txtNumber<%=comp.getComplements().getName()%>" id="txtNumber<%=comp.getComplements().getName()%>" type="number" class="center col s3 m6"></font></td>
+					<td><font><input type="checkbox" name="chkcomp" value= "<%=comp.getComplements().getIdComplement()%>"id="chkComp<%=comp.getComplements().getIdComplement()%>"/><label for="chkComp<%=comp.getComplements().getIdComplement()%>"><%=comp.getComplements().getName()%></label></font></td>
+					<td><font><input name="txtComplementsNumber<%=comp.getComplements().getIdComplement() %>" id="txtComplementsNumber<%=comp.getComplements().getIdComplement()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
                                 </table>
@@ -132,12 +132,12 @@
             	</div>
                  <% if(noSendOrder == null ){%>
             	<div class="row center">
-                    <i class="btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="button" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
+                    <i class="btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
 		</div>
                 <% }%>
                 <%if(noSendOrder != null){%>
                 <div class="row center">
-                    <i class="btn-large disabled waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="button" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
+                    <i class="btn-large disabled waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnSendOrder" class="center-align waves-button-input" value="Enviar Pedido" style="" onclick="Materialize.toast('¡Tu pedido está siendo procesado!', 4000)"></i>
 		</div>
                 <%}%>
             </div>
