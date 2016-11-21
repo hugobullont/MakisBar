@@ -7,7 +7,7 @@
 <%@page import="Entities.RelRestMak"%>
 <%@page import="java.util.List"%>
 <%@page import="DataAccess.Products.*"%>
-<%@page import="Entities.Tables"%>
+<%@page import="Entities.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,10 @@
     <% HttpSession httpsession = request.getSession(false); 
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
             IProductsRepository ProductsRepo = new ProductsRepository();
-            List<RelRestMak> listMakis = ProductsRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant()); %>
+            List<RelRestMak> listMakis = ProductsRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant()); 
+            List<RelRestDrk> listDrinks = ProductsRepo.GetDrinksByRestaurant(cUser.getRestaurants().getIdRestaurant());
+            List<RelRestCmp> listComplements = ProductsRepo.GetComplByRestaurant(cUser.getRestaurants().getIdRestaurant());
+    %>
     <body>
         <nav class="orange lighten-2" role="navigation">
             <div class="nav-wrapper container">
@@ -89,14 +92,12 @@
                                 <span class="card-title grey-text text-darken-4">Bebidas<i class="material-icons right">close</i></span>
                                 <p>¡Dale click a las Bebidas que deseas para agregarlas al pedido! ¡No olvides poner la cantidad de vasos!</p>
                                 <table>
+                                    <% for(RelRestDrk drink : listDrinks) {%>
                                     <tr>
-                                        <td><input type="checkbox" id="chkCC"/><label for="chkCC">CocaCola</label></td>
-					<td><input id="txtNumberCC" type="number" class="ccenter col s3 m6"></td>
+					<td><font><input type="checkbox" name="ckhdrinks" value= "<%=drink.getDrinks().getName()%>"id="chk<%=drink.getDrinks().getName()%>"/><label for="chk<%=drink.getDrinks().getName()%>"><%=drink.getDrinks().getName()%></label></font></td>
+					<td><font><input name="txtNumber<%=drink.getDrinks().getName()%>" id="txtNumber<%=drink.getDrinks().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
-                                    <tr>
-					<td><input type="checkbox" id="chkIK"/><label for="chkIK">IncaKola</label></td>
-					<td><input id="txtNumberIK" type="number" class="center col s3 m6"></td>
-                                    </tr>
+                                    <%}%>
 				</table>
                             </div>
 			</div>
@@ -114,14 +115,12 @@
                                 <span class="card-title grey-text text-darken-4">Complementos<i class="material-icons right">close</i></span>
                                 <p>¡Dale click a los complementos que deseas para agregarlos al pedido! ¡No olvides poner la cantidad!</p>
                                 <table>
+                                    <% for(RelRestCmp comp : listComplements) {%>
                                     <tr>
-                                        <td><input type="checkbox" id="chkArroz"/><label for="chkArroz">Arroz</label></td>
-                                        <td><input id="txtArroz" type="number" class="center col s3 m6"></td>
+					<td><font><input type="checkbox" name="ckhdrinks" value= "<%=comp.getComplements().getName()%>"id="chk<%=comp.getComplements().getName()%>"/><label for="chk<%=comp.getComplements().getName()%>"><%=comp.getComplements().getName()%></label></font></td>
+					<td><font><input name="txtNumber<%=comp.getComplements().getName()%>" id="txtNumber<%=comp.getComplements().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="chkCurry"/><label for="chkCurry">Curry</label></td>
-                                        <td><input id="txtNumberIK" type="number" class="center col s3 m6"></td>
-                                    </tr>
+                                    <%}%>
                                 </table>
                             </div>
                         </div>
