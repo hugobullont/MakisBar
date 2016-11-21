@@ -49,7 +49,7 @@
     <div class="row">
             <!--- CÓDIGO JAVA PARA MOSTRAR SOLO LAS MESAS QUE SE TIENEN --->
             <% HttpSession httpsession = request.getSession(false); 
-            Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
+             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
              ITableRepository restTables = new TableRepository();
              IWaiterRepository waiterRepo = new WaiterRepository();
              IOrderRepository orderRepo = new OrderRepository();
