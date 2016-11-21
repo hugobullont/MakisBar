@@ -69,7 +69,7 @@
 				<table>
                                     <% for(RelRestMak maki : listMakis) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="ckhmakis" value= "<%=maki.getMakis().getName() %>"id="chk<%=maki.getMakis().getName()%>"/><label for="chk<%=maki.getMakis().getName()%>"><%=maki.getMakis().getName()%></label></font></td>
+					<td><font><input type="checkbox" name="chkmakis" value= "<%=maki.getMakis().getName() %>"id="chk<%=maki.getMakis().getName()%>"/><label for="chk<%=maki.getMakis().getName()%>"><%=maki.getMakis().getName()%></label></font></td>
 					<td><font><input name="txtNumber<%=maki.getMakis().getName()%>" id="txtNumber<%=maki.getMakis().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
@@ -94,7 +94,7 @@
                                 <table>
                                     <% for(RelRestDrk drink : listDrinks) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="ckhdrinks" value= "<%=drink.getDrinks().getName()%>"id="chk<%=drink.getDrinks().getName()%>"/><label for="chk<%=drink.getDrinks().getName()%>"><%=drink.getDrinks().getName()%></label></font></td>
+					<td><font><input type="checkbox" name="chkdrinks" value= "<%=drink.getDrinks().getName()%>"id="chk<%=drink.getDrinks().getName()%>"/><label for="chk<%=drink.getDrinks().getName()%>"><%=drink.getDrinks().getName()%></label></font></td>
 					<td><font><input name="txtNumber<%=drink.getDrinks().getName()%>" id="txtNumber<%=drink.getDrinks().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
@@ -117,7 +117,7 @@
                                 <table>
                                     <% for(RelRestCmp comp : listComplements) {%>
                                     <tr>
-					<td><font><input type="checkbox" name="ckhdrinks" value= "<%=comp.getComplements().getName()%>"id="chk<%=comp.getComplements().getName()%>"/><label for="chk<%=comp.getComplements().getName()%>"><%=comp.getComplements().getName()%></label></font></td>
+					<td><font><input type="checkbox" name="chkcomp" value= "<%=comp.getComplements().getName()%>"id="chk<%=comp.getComplements().getName()%>"/><label for="chk<%=comp.getComplements().getName()%>"><%=comp.getComplements().getName()%></label></font></td>
 					<td><font><input name="txtNumber<%=comp.getComplements().getName()%>" id="txtNumber<%=comp.getComplements().getName()%>" type="number" class="center col s3 m6"></font></td>
                                     </tr>
                                     <%}%>
