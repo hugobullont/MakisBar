@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Entities.Orders;
+import Entities.Tables;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +75,13 @@ public class AddOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(false);
+        Tables cUser = (Tables) session.getAttribute("CurrentUser");
+        Orders order = new Orders();
+        order.setTables(cUser);
+        
+        
+        response.sendRedirect("order.jsp");
     }
 
     /**
