@@ -36,6 +36,7 @@ public class OrderRepository implements IOrderRepository{
         session.save(objOrder);
         for(Productsbyorder product : listProducts)
         {
+            product.setOrders(objOrder);
             session.save(product);
         }
         session.getTransaction().commit();

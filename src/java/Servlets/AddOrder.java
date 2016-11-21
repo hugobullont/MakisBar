@@ -90,35 +90,45 @@ public class AddOrder extends HttpServlet {
         String[] orderComps = request.getParameterValues("chkcomp");
         List<Productsbyorder> products = new ArrayList<Productsbyorder>();
         
-        for(String id:orderMakis)
+        if(orderMakis!=null)
         {
-            Productsbyorder product = new Productsbyorder();
-            product.setProductId(Integer.valueOf(id));
-            product.setProductType("Makis");
-            String quantity = request.getParameter("txtMakisNumber"+id);
-            product.setQuantity(Integer.valueOf(quantity));
-            products.add(product);
+            for(String id:orderMakis)
+            {
+                Productsbyorder product = new Productsbyorder();
+                product.setProductId(Integer.valueOf(id));
+                product.setProductType("Makis");
+                String quantity = request.getParameter("txtMakisNumber"+id);
+                product.setQuantity(Integer.valueOf(quantity));
+                products.add(product);
+            }
         }
         
-        for(String id:orderDrinks)
+        if(orderDrinks!=null)
         {
-            Productsbyorder product = new Productsbyorder();
-            product.setProductId(Integer.valueOf(id));
-            product.setProductType("Drinks");
-            String quantity = request.getParameter("txtDrinksNumber"+id);
-            product.setQuantity(Integer.valueOf(quantity));
-            products.add(product);
+            for(String id:orderDrinks)
+            {
+                Productsbyorder product = new Productsbyorder();
+                product.setProductId(Integer.valueOf(id));
+                product.setProductType("Drinks");
+                String quantity = request.getParameter("txtDrinksNumber"+id);
+                product.setQuantity(Integer.valueOf(quantity));
+                products.add(product);
+            }
         }
         
-        for(String id:orderComps)
+        if(orderComps!=null)
         {
-            Productsbyorder product = new Productsbyorder();
-            product.setProductId(Integer.valueOf(id));
-            product.setProductType("Complements");
-            String quantity = request.getParameter("txtComplementsNumber"+id);
-            product.setQuantity(Integer.valueOf(quantity));
-            products.add(product);
+            for(String id:orderComps)
+            {
+                Productsbyorder product = new Productsbyorder();
+                product.setProductId(Integer.valueOf(id));
+                product.setProductType("Complements");
+                String quantity = request.getParameter("txtComplementsNumber"+id);
+                product.setQuantity(Integer.valueOf(quantity));
+                products.add(product);
+            }
         }
+        
         
         repo.AddOrder(order, products);
         
