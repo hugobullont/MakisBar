@@ -5,6 +5,8 @@
  */
 package DataAccess.Orders;
 
+import DataAccess.Products.IProductsRepository;
+import DataAccess.Products.ProductsRepository;
 import Entities.OrderProduct;
 import Entities.Orders;
 import Entities.Tables;
@@ -31,22 +33,23 @@ public class OrderRepository implements IOrderRepository{
 
     @Override
     public void AddOrder(Orders objOrder, List<Productsbyorder> listProducts) {
+        IProductsRepository productRepo = new ProductsRepository();
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(objOrder);
         for(Productsbyorder product : listProducts)
         {
+            switch(product.getProductType())
+            {
+                case "Makis": break;
+                case "Drinks": break;
+                case "Complements": break;
+            }
             product.setOrders(objOrder);
             session.save(product);
         }
         session.getTransaction().commit();
         session.close(); 
-    }
-
-    @Override
-    public void DeleteOrder(int orderId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        
     }
 
     @Override

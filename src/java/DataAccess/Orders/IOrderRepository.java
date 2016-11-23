@@ -19,7 +19,6 @@ public interface IOrderRepository {
     public List<OrderProduct> GetDrinksOfOrders();
     public List<OrderProduct> GetComplementsOfOrders();
     public void AddOrder(Orders objOrder, List<Productsbyorder> listProducts);
-    public void DeleteOrder(int orderId);
     public Orders GetNoSendedOrderByTable(int tableId);
     public void SetSendedToOrder(int orderId);
     
