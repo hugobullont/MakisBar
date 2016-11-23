@@ -4,7 +4,10 @@
     Author     : Leonel
 --%>
 
+<%@page import="DataAccess.Products.ProductsRepository"%>
+<%@page import="DataAccess.Products.IProductsRepository"%>
 <%@page import="Entities.RelRestMak"%>
+<%@page import="Entities.*"%>
 <%@page import="Entities.Waiter"%>
 <%@page import="java.util.List"%>
 <%@page import="DataAccess.Waiters.WaiterRepository"%>
@@ -30,6 +33,10 @@
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
              ITableRepository restTables = new TableRepository();
              IWaiterRepository waiterRepo = new WaiterRepository();
+             IProductsRepository productRepo = new ProductsRepository();
+             List<RelRestMak> listMakis = (List<RelRestMak>) productRepo.GetMakisByRestaurant(cUser.getRestaurants().getIdRestaurant());
+             List<RelRestDrk> listDrinks = (List<RelRestDrk>) productRepo.GetDrinksByRestaurant(cUser.getRestaurants().getIdRestaurant());
+             List<RelRestCmp> listCmps = (List<RelRestCmp>) productRepo.GetComplByRestaurant(cUser.getRestaurants().getIdRestaurant());
              List<Tables> listTables = (List<Tables>) restTables.GetUsersTablesByRestaurant(cUser.getRestaurants().getIdRestaurant());
              List<Waiter> listWaiter = (List<Waiter>) waiterRepo.GetWaitersFromRestaurants(cUser.getRestaurants().getIdRestaurant());%>
         <nav class="orange lighten-2" role="navigation">
@@ -190,6 +197,95 @@
 								</div>
 							</div>
 				</div>
+                                <div class="col s12 m6">
+					<div class="card medium hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="resources/makis.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Editar Stock de Makis<i class="material-icons right">more_vert</i></span>
+						  <p>¿Llegaron los nuevos insumos? ¡Edita el Stock!</p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Editar Stock de Makis<i class="material-icons right">close</i></span>
+                                                  <form class="col s12" action="UpdateMakis" method="POST">
+                                                    <div>
+                                                        <%for(RelRestMak temp : listMakis){%>
+                                                        <div class="input-field">
+                                                            <input value="<%=temp.getStock()%>" name ="txtMakis"id="txtMaki<%=temp.getIdRelRestMak()%>" type="text" class="validate">
+                                                            <label class="" for="txtMaki<%=temp.getIdRelRestMak()%>"><%=temp.getMakis().getName()%></label>
+                                                        </div>
+                                                        <%}%>
+
+                                                        <div class="row center">
+                                                            <i class="center btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnEditarStockMak" class="waves-button-input" value="Editar Stock" style=""></i>
+                                                        </div>
+                                                    </div>
+                                                   </form>
+
+						</div>
+					</div>
+				</div>
+                                <div class="col s12 m6">
+					<div class="card medium hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="resources/drinks.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Editar Stock de Bebidas<i class="material-icons right">more_vert</i></span>
+						  <p>¿Llegaron más Bebidas? ¡Edita el Stock!</p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Editar Stock de Bebidas<i class="material-icons right">close</i></span>
+                                                  <form class="col s12" action="UpdateDrinks" method="POST">
+                                                    <div>
+                                                        <%for(RelRestDrk temp : listDrinks){%>
+                                                        <div class="input-field">
+                                                            <input value="<%=temp.getStock()%>" name ="txtDrinks" id="txtDrink<%=temp.getIdRelRestDrk()%>" type="text" class="validate">
+                                                            <label class="" for="txtDrink<%=temp.getIdRelRestDrk()%>"><%=temp.getDrinks().getName()%></label>
+                                                        </div>
+                                                        <%}%>
+
+                                                        <div class="row center">
+                                                            <i class="center btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnEditarStockMak" class="waves-button-input" value="Editar Stock" style=""></i>
+                                                        </div>
+                                                    </div>
+                                                   </form>
+
+						</div>
+					</div>
+				</div>
+                                <div class="col s12 m6">
+					<div class="card medium hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="resources/complements.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Editar Stock de Complementos<i class="material-icons right">more_vert</i></span>
+						  <p>¿Llegaron más Insumos? ¡Edita el Stock!</p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Editar Stock de Complementos<i class="material-icons right">close</i></span>
+                                                  <form class="col s12" action="UpdateComplements" method="POST">
+                                                    <div>
+                                                        <%for(RelRestCmp temp : listCmps){%>
+                                                        <div class="input-field">
+                                                            <input value="<%=temp.getStock()%>" name ="txtCmps" id="txtCmp<%=temp.getIdRelRestCmp()%>" type="text" class="validate">
+                                                            <label class="" for="txtCmp<%=temp.getIdRelRestCmp()%>"><%=temp.getComplements().getName()%></label>
+                                                        </div>
+                                                        <%}%>
+
+                                                        <div class="row center">
+                                                            <i class="center btn-large waves-effect waves-light brown lighten-1 waves-input-wrapper" style=""><input type="submit" id="btnEditarStockMak" class="waves-button-input" value="Editar Stock" style=""></i>
+                                                        </div>
+                                                    </div>
+                                                   </form>
+
+						</div>
+					</div>
+				</div>
+                                                                    
+                                                                  
        		</div>
         </div>
         
