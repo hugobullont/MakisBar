@@ -17,6 +17,9 @@ import java.util.List;
  */
 public interface IProductsRepository {
     List<RelRestMak> GetMakisByRestaurant(int idRest);
+    RelRestMak GetRelMakiByRestaurantMakiId(int idRest, int idMaki);
     List<RelRestDrk> GetDrinksByRestaurant(int idRest);
+    RelRestDrk GetRelDrinkByRestaurantDrinkId(int idRest, int idDrink);
     List<RelRestCmp> GetComplByRestaurant(int idRest);
+    RelRestCmp GetRelCmpByRestaurantCompId(int idRest, int idCmp);
 }

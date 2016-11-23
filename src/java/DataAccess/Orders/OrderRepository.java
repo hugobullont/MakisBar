@@ -11,6 +11,7 @@ import Entities.OrderProduct;
 import Entities.Orders;
 import Entities.Tables;
 import Entities.Productsbyorder;
+import Entities.RelRestMak;
 import Hibernate.MakisBarHibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
@@ -41,9 +42,12 @@ public class OrderRepository implements IOrderRepository{
         {
             switch(product.getProductType())
             {
-                case "Makis": break;
-                case "Drinks": break;
-                case "Complements": break;
+                case "Makis": RelRestMak maki = productRepo.GetRelMakiByRestaurantMakiId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
+                    break;
+                case "Drinks": 
+                    break;
+                case "Complements": 
+                    break;
             }
             product.setOrders(objOrder);
             session.save(product);
