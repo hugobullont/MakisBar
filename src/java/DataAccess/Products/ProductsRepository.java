@@ -81,10 +81,11 @@ public class ProductsRepository implements IProductsRepository{
 
     @Override
     public void UpdateMakisStock(int idRest, int stock, int idMaki) {
-        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        
         RelRestMak relMaki = GetRelMakiByRestaurantMakiId(idRest,idMaki);
         relMaki.setStock(stock);
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         session.update(relMaki);
         session.getTransaction().commit();
         session.close();
@@ -92,10 +93,11 @@ public class ProductsRepository implements IProductsRepository{
 
     @Override
     public void UpdateDrinksStock(int idRest, int stock, int idDrink) {
-        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        
         RelRestDrk relDrink = GetRelDrinkByRestaurantDrinkId(idRest,idDrink);
         relDrink.setStock(stock);
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         session.update(relDrink);
         session.getTransaction().commit();
         session.close();
@@ -103,9 +105,10 @@ public class ProductsRepository implements IProductsRepository{
 
     @Override
     public void UpdateComplementsStock(int idRest, int stock, int idCmp) {
+        
+        RelRestCmp relCmp = GetRelCmpByRestaurantCompId(idRest,idCmp);
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        RelRestCmp relCmp = GetRelCmpByRestaurantCompId(idRest,idCmp);
         relCmp.setStock(stock);
         session.update(relCmp);
         session.getTransaction().commit();

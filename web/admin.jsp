@@ -28,6 +28,7 @@
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
     </head>
+    <% response.setIntHeader("Refresh", 30);%>
     <body>
         <% HttpSession httpsession = request.getSession(false); 
             Tables cUser = (Tables) httpsession.getAttribute("CurrentUser");
