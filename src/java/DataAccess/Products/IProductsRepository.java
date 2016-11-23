@@ -5,7 +5,7 @@
  */
 package DataAccess.Products;
 
-import Entities.Makis;
+import Entities.*;
 import Entities.RelRestCmp;
 import Entities.RelRestDrk;
 import Entities.RelRestMak;
@@ -22,4 +22,7 @@ public interface IProductsRepository {
     RelRestDrk GetRelDrinkByRestaurantDrinkId(int idRest, int idDrink);
     List<RelRestCmp> GetComplByRestaurant(int idRest);
     RelRestCmp GetRelCmpByRestaurantCompId(int idRest, int idCmp);
+    void UpdateMakisStock(int idRest, int stock, int idMaki);
+    void UpdateDrinksStock(int idRest, int stock, int idDrink);
+    void UpdateComplementsStock(int idRest, int stock, int idCmp);
 }

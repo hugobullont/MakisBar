@@ -78,5 +78,40 @@ public class ProductsRepository implements IProductsRepository{
         session.close();
         return complements;
     }
+
+    @Override
+    public void UpdateMakisStock(int idRest, int stock, int idMaki) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        RelRestMak relMaki = GetRelMakiByRestaurantMakiId(idRest,idMaki);
+        relMaki.setStock(stock);
+        session.update(relMaki);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void UpdateDrinksStock(int idRest, int stock, int idDrink) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        RelRestDrk relDrink = GetRelDrinkByRestaurantDrinkId(idRest,idDrink);
+        relDrink.setStock(stock);
+        session.update(relDrink);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public void UpdateComplementsStock(int idRest, int stock, int idCmp) {
+        Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        RelRestCmp relCmp = GetRelCmpByRestaurantCompId(idRest,idCmp);
+        relCmp.setStock(stock);
+        session.update(relCmp);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+
     
 }

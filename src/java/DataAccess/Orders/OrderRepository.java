@@ -11,6 +11,8 @@ import Entities.OrderProduct;
 import Entities.Orders;
 import Entities.Tables;
 import Entities.Productsbyorder;
+import Entities.RelRestCmp;
+import Entities.RelRestDrk;
 import Entities.RelRestMak;
 import Hibernate.MakisBarHibernateUtil;
 import java.util.List;
@@ -42,11 +44,26 @@ public class OrderRepository implements IOrderRepository{
         {
             switch(product.getProductType())
             {
-                case "Makis": RelRestMak maki = productRepo.GetRelMakiByRestaurantMakiId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
+                case "Makis": 
+                    RelRestMak maki = productRepo.GetRelMakiByRestaurantMakiId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
+                    int stockM = maki.getStock();
+                    stockM = stockM - product.getQuantity();
+                    maki.setStock(stockM);
+                    session.save(maki);
                     break;
                 case "Drinks": 
+                    RelRestDrk drink = productRepo.GetRelDrinkByRestaurantDrinkId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
+                    int stockD = drink.getStock();
+                    stockD = stockD - product.getQuantity();
+                    drink.setStock(stockD);
+                    session.save(drink);
                     break;
-                case "Complements": 
+                case "Complements":
+                    RelRestCmp cmp = productRepo.GetRelCmpByRestaurantCompId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
+                    int stockC = cmp.getStock();
+                    stockC = stockC - product.getQuantity();
+                    cmp.setStock(stockC);
+                    session.save(cmp);
                     break;
             }
             product.setOrders(objOrder);
