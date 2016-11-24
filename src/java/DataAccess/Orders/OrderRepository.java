@@ -40,8 +40,12 @@ public class OrderRepository implements IOrderRepository{
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(objOrder);
+        session.getTransaction().commit();
+        session.close(); 
         for(Productsbyorder product : listProducts)
         {
+            Session session2 = MakisBarHibernateUtil.getSessionFactory().openSession();
+            session2.beginTransaction();
             switch(product.getProductType())
             {
                 case "Makis": 
@@ -49,28 +53,29 @@ public class OrderRepository implements IOrderRepository{
                     int stockM = maki.getStock();
                     stockM = stockM - product.getQuantity();
                     maki.setStock(stockM);
-                    session.save(maki);
+                    session2.update(maki);
                     break;
                 case "Drinks": 
                     RelRestDrk drink = productRepo.GetRelDrinkByRestaurantDrinkId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
                     int stockD = drink.getStock();
                     stockD = stockD - product.getQuantity();
                     drink.setStock(stockD);
-                    session.save(drink);
+                    session2.update(drink);
                     break;
                 case "Complements":
                     RelRestCmp cmp = productRepo.GetRelCmpByRestaurantCompId(objOrder.getTables().getRestaurants().getIdRestaurant(), product.getProductId());
                     int stockC = cmp.getStock();
                     stockC = stockC - product.getQuantity();
                     cmp.setStock(stockC);
-                    session.save(cmp);
+                    session2.update(cmp);
                     break;
             }
             product.setOrders(objOrder);
-            session.save(product);
+            session2.save(product);
+            session2.getTransaction().commit();
+            session2.close();
         }
-        session.getTransaction().commit();
-        session.close(); 
+        
     }
 
     @Override
