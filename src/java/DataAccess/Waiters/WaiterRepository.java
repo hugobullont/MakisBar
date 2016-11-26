@@ -32,6 +32,7 @@ public class WaiterRepository implements IWaiterRepository {
     public void InsertWaiter(Waiter objWaiter) {
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        objWaiter.setActive(Byte.valueOf("1"));
         session.save(objWaiter);
         session.getTransaction().commit();
         session.close();

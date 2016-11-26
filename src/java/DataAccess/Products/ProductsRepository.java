@@ -74,7 +74,7 @@ public class ProductsRepository implements IProductsRepository{
         Session session = MakisBarHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         RelRestCmp complements = new RelRestCmp();
-        complements = (RelRestCmp) session.createQuery("FROM RelRestCmp as rel where rel.restaurants.idRestaurant ="+ idRest + "rel.complements.idComplement="+idCmp).uniqueResult();
+        complements = (RelRestCmp) session.createQuery("FROM RelRestCmp as rel where rel.restaurants.idRestaurant ="+ idRest + "and rel.complements.idComplement="+idCmp).uniqueResult();
         session.close();
         return complements;
     }
