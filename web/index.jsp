@@ -64,11 +64,11 @@
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input name = "txtUsername" id="txtUsername" type="text">
+                            <input name = "txtUsername" id="txtUsername" type="text" required>
                             <label for="txtUsername">Código de Mesa</label>
                         </div>
                         <div class="input-field">
-                            <input name="txtPassword" id="txtPassword" type="password">
+                            <input name="txtPassword" id="txtPassword" type="password" required>
                             <label for="txtPassword">Contraseña</label>
                         </div>
                         <div class="row center">
