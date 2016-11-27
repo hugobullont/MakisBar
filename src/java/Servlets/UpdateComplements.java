@@ -81,7 +81,7 @@ public class UpdateComplements extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         Tables cUser = (Tables) session.getAttribute("CurrentUser");
-        String[] msu = request.getParameterValues("txtDrinks");
+        String[] msu = request.getParameterValues("txtCmps");
         IProductsRepository productRepo = new ProductsRepository();
         List<RelRestCmp> listComps = (List<RelRestCmp>) productRepo.GetComplByRestaurant(cUser.getRestaurants().getIdRestaurant());
         for(int i =0;i<listComps.size();i++)
